@@ -14,7 +14,7 @@ Welcome to my dotfiles repository! This repository contains various configuratio
 To use these dotfiles, simply clone the repository:
 
 ```
-git clone https://github.com/toocomputer/linux-dots.git
+git clone https://github.com/toocomputer/dotfiles-linux.git
 ```
 
 Then, change to the repository directory:
