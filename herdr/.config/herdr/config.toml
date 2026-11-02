@@ -1,0 +1,24 @@
+onboarding = false
+
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+[keys]
+prefix = "ctrl+s"
+move_tab_previous = "prefix+shift+h"
+move_tab_next = "prefix+shift+l"
+
+[[keys.command]]
+key = "prefix+minus"
+type = "plugin_action"
+command = "custom.pane-namer.split-down-named"
+
+[[keys.command]]
+key = "prefix+\\"
+type = "plugin_action"
+command = "custom.pane-namer.split-right-named"
+
+[ui]
+accent = "#b4befe"
+window_title = "{workspace}"

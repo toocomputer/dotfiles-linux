@@ -1,0 +1,54 @@
+{
+  "version": 3,
+  "workspaces": [
+    {
+      "id": "w5",
+      "custom_name": null,
+      "identity_cwd": "/home/ee",
+      "public_pane_numbers": {
+        "1": 1,
+        "3": 2
+      },
+      "next_public_pane_number": 3,
+      "public_tab_numbers": [
+        1
+      ],
+      "next_public_tab_number": 2,
+      "tabs": [
+        {
+          "custom_name": null,
+          "layout": {
+            "Split": {
+              "direction": "Vertical",
+              "ratio": 0.5,
+              "first": {
+                "Pane": 1
+              },
+              "second": {
+                "Pane": 3
+              }
+            }
+          },
+          "panes": {
+            "1": {
+              "cwd": "/home/ee"
+            },
+            "3": {
+              "cwd": "/home/ee",
+              "label": "test"
+            }
+          },
+          "zoomed": false,
+          "focused": 3,
+          "root_pane": 1
+        }
+      ],
+      "active_tab": 0
+    }
+  ],
+  "active": 0,
+  "selected": 0,
+  "sidebar_width": null,
+  "sidebar_section_split": null,
+  "collapsed_space_keys": []
+}

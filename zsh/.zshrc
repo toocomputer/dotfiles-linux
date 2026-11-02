@@ -1,0 +1,249 @@
+#Path to your oh-my-zsh installation.
+export ZSH=/usr/share/oh-my-zsh
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# ZSH_THEME="dracula"
+# ZSH_THEME="headline"
+
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+# plugins=(
+#  git z zsh-syntax-highlighting macos
+# )
+
+plugins=(
+ zsh-syntax-highlighting zsh-autosuggestions
+)
+
+ZSH_CUSTOM="$HOME/.config/oh-my-zsh-custom"
+
+source $ZSH/oh-my-zsh.sh
+
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='nvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+alias breeze="v ~/.git.scmbrc"
+alias aa="clear"
+alias caffeine="caffeinate -t 144000 &"
+alias cdvim="cd $HOME/.config/nvim"
+alias chistory="echo "" > ~/.zsh_history & exec $SHELL -l"
+alias dd="cd $HOME/Desktop && ls"
+alias decaf="killall caffeinate"
+alias dev="npm run dev"
+alias dot="cd $HOME/dotfiles"
+alias ee="exit"
+# https://stackoverflow.com/questions/41963660/how-to-open-a-file-in-a-specific-application-from-fzf#64416946
+alias f='nvim $(fzf -m --preview="bat --color=always {}")'
+alias globals="npm list -g --depth 0"
+alias gg="lazygit"
+alias gs="git status"
+alias her=herdr
+alias ilua="v ~/.config/nvim/init.lua"
+alias launch="cd; ~/projects/launch"
+alias lazy='NVIM_APPNAME=lazyvim nvim'
+alias live="live-server"
+alias ll="ls -al"
+alias lt="eza -T -a --icons --color"
+alias ltl="eza -l -T -a --icons --color"
+alias ls="eza --all --icons --group-directories-first --sort=modified -r"
+alias m="cmatrix"
+alias omz="omz update"
+alias ohmyzsh="v ~/.oh-my-zsh"
+alias newvite="npm create vite@latest"
+alias pn=pnpm
+alias projects="cd $HOME/Projects"
+alias python="python3"
+alias prd="pnpm run deploy"
+alias serve="http-server -o -c-1"
+alias shut="shutdown now"
+alias sz="source ~/.zshrc"
+alias v='NVIM_APPNAME=lazyvim command nvim'
+alias vite-dir="npx vite-dir"
+alias vscs="cd $HOME/projects/vscs"
+alias zsh="v ~/.zshrc"
+alias zterm="v +term"
+
+# MISC FUNCTIONS
+alias cd 2>/dev/null && unalias cd
+cd() {
+  builtin cd "$@" && ls
+}
+
+function dotfiles() {
+  cd ~/dotfiles && git status
+}
+
+function gc() {
+  if [ -z "$1" ]; then
+    git commit
+  else
+    git commit -m "$*"
+  fi
+}
+
+# https://unix.stackexchange.com/questions/125385/combined-mkdir-and-cd
+function mkcd() {
+  mkdir -p -- "$1" &&
+  cd -P -- "$1"
+}
+
+function b() {
+  bat "$1"
+}
+
+eval "$(starship init zsh)"
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# fastfetch
+
+[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
+
+autoload -U +X bashcompinit && bashcompinit
+
+export EZA_CONFIG_DIR="$HOME/.config/eza"
+
+# Use vi mode
+bindkey -v
+bindkey -M viins 'jk' vi-cmd-mode
+
+# Function to set cursor shape based on mode (non-blinking)
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]]; then
+    # Normal mode: steady block cursor (non-blinking)
+    echo -ne '\e[2 q'
+  else
+    # Insert mode: steady beam cursor (non-blinking)
+    echo -ne '\e[6 q'
+  fi
+}
+
+# Function to set cursor shape when command line starts (initially insert mode)
+function zle-line-init {
+  echo -ne '\e[6 q'  # Steady beam cursor for insert mode
+}
+
+# Reset cursor shape on command line finish
+function zle-line-finish {
+  echo -ne '\e[2 q'  # Steady block cursor
+}
+
+# Register widgets
+zle -N zle-keymap-select
+zle -N zle-line-init
+zle -N zle-line-finish
+
+source  <(fzf --zsh)
+
+XDG_CONFIG_HOME=$HOME/.config
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+eval "$(zoxide init zsh)"
+
+[ -s "/Users/e/.scm_breeze/scm_breeze.sh" ] && source "/Users/e/.scm_breeze/scm_breeze.sh"
+
+export XDG_CURRENT_DESKTOP=Hyprland
+
+if [[ "$(uname)" = "Linux" ]]; then
+  if [[ "$(tty)" = /dev/tty1 ]]; then
+    sudo chmod 666 /dev/tty
+    AQ_NO_KMS_REQUIREMENT=1 setsid -f uwsm start -- start-hyprland >/dev/null 2>&1
+  fi
+fi
+
+precmd_functions=(${precmd_functions:#prompt_grml_precmd})
+prompt_starship_precmd
+
+# Use tab for zsh autosuggestions when applicable. Fall back to default behavior when not applicable.
+function _tab_complete_or_accept_suggestion() {
+	if [[ -n $POSTDISPLAY ]]; then
+		zle autosuggest-accept
+	else
+		zle expand-or-complete
+	fi
+}
+zle -N _tab_complete_or_accept_suggestion
+
+bindkey -M emacs '^I' _tab_complete_or_accept_suggestion
+bindkey -M viins '^I' _tab_complete_or_accept_suggestion
